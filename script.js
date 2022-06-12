@@ -1,4 +1,4 @@
-var haslo = "it camp jest fajny";
+var haslo = "jest niedziela";
 haslo = haslo.toUpperCase();
 
 var ukryte_haslo = "";
@@ -63,7 +63,7 @@ function generate_letters() {
 	var html = '';
 	
 	for(var i = 0; i < 32; i++) {
-		var temp = '<div onClick="check(' + i + ')">' + litery[i] + '</div>';
+		var temp = '<div onClick="check(' + i + ')" id="l' + i + '">' + litery[i] + '</div>';
 		html = html + temp;
 		if((i + 1) % 8 == 0) {
 			html = html + '<br>';
@@ -81,11 +81,22 @@ function check(letterNo) {
 		}
 	}
 	
+	var letterId = 'l' + letterNo;
+	
 	if(!trafienie && skucha < 9) {
 		skucha++;
 		var obrazek = '<img src="img/s' + skucha + '.jpg">';
 		document.getElementById("szubienica").innerHTML = obrazek;
+		document.getElementById(letterId).style.background = "#550000";
+		document.getElementById(letterId).style.color = "#FF0000";
+		document.getElementById(letterId).style.border = "3px solid #550000";
+	} else {
+		document.getElementById(letterId).style.background = "#005500";
+		document.getElementById(letterId).style.color = "#00FF00";
+		document.getElementById(letterId).style.border = "3px solid #005500";
 	}
+	
+	document.getElementById(letterId).setAttribute("onClick", ";");
 	
 	if(skucha >= 9) {
 		document.getElementById("litery").innerHTML = "Przegrana";
